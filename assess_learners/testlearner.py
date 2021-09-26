@@ -37,33 +37,13 @@ import csv
 import time
   		  	   		   	 		  		  		    	 		 		   		 		  
 if __name__ == "__main__":
-    # if len(sys.argv) != 2:
-    #     print("Usage: python testlearner.py <filename>")
-    #     sys.exit(1)
-    # inf = open(sys.argv[1])
-    # data = np.array(
-    #     [list(map(float, s.strip().split(","))) for s in inf.readlines()]
-    # )
-
-
-    # if 'Istanbul.csv' in sys.argv[1]:
-    #     print('data')
-    #     data = data[1:, 1:]
-    # data.astype(float)
-
-
-
-    with open('Data/Istanbul.csv') as f:
-        data = np.genfromtxt(f, delimiter=',')
-    # make data as a numpy matrix
-    data = np.array(data)[1:, 1:]
+    if len(sys.argv) != 2:
+        print("Usage: python testlearner.py <filename>")
+        sys.exit(1)
+    inf = open(sys.argv[1])
+    data = np.genfromtxt(f, delimiter=',')
+    data = data[1:, 1:]
     data.astype(float)
-
-    print(data.shape)
-
-
-
-
 
 
     # compute how much of the data is training and testing  		  	   		   	 		  		  		    	 		 		   		 		  
@@ -189,7 +169,7 @@ if __name__ == "__main__":
         R_squared_4 = 1 - np.sum((pred_y_4 - test_y) ** 2) / np.sum((test_y - np.mean(test_y)) ** 2)
         R_squared_rt_out_sample.append(R_squared_4)
 
-    # plt.figure(3)
+    # plt.figure()
     # plt.plot(leaf_range, dt_in_sample_mae, label='DTLearner MAE in sample')
     # plt.plot(leaf_range, rt_in_sample_mae, label='RTLearner MAE in sample')
     # plt.plot(leaf_range, dt_out_sample_mae, label='DTLearner MAE out sample')
@@ -220,7 +200,7 @@ if __name__ == "__main__":
     plt.legend()
     plt.savefig('experiment_3_2')
 
-    # plt.figure(5)
+    # plt.figure()
     # plt.plot(leaf_range, bl_in_sample_rmse, label= 'in sample')
     # plt.plot(leaf_range, bl_out_sample_rmse, label= 'out sample')
     # plt.title('RMSE vs. leaf size - BagLearner')
