@@ -12,12 +12,8 @@ class BagLearner(object):
         self.verbose = verbose
         self.learners = [self.learner(**kwargs) for i in range(self.bags)]
 
-
     def author(self):
-        return "zhou90"  # replace tb34 with your Georgia Tech username
-
-
-
+        return "azhou90"  # replace tb34 with your Georgia Tech username
 
     def add_evidence(self, data_x, data_y):
         """
