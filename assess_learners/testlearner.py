@@ -34,6 +34,7 @@ import InsaneLearner as il
 import matplotlib
 import matplotlib.pyplot as plt
 import csv
+import time
   		  	   		   	 		  		  		    	 		 		   		 		  
 if __name__ == "__main__":
     # if len(sys.argv) != 2:
@@ -99,7 +100,7 @@ if __name__ == "__main__":
         dt_out_sample_rmse.append(rmse_2)
 
     #figure for experiment1
-    plt.figure(1)
+    plt.figure()
     plt.plot(leaf_range, dt_in_sample_rmse, label= 'in sample')
     plt.plot(leaf_range, dt_out_sample_rmse, label= 'out sample')
     plt.title('RMSE vs. leaf size - DTLearner')
@@ -129,7 +130,7 @@ if __name__ == "__main__":
         bl_out_sample_rmse.append(rmse_2)
 
     #figure for experiment2
-    plt.figure(2)
+    plt.figure()
     plt.plot(leaf_range, bl_in_sample_rmse, label= 'in sample')
     plt.plot(leaf_range, bl_out_sample_rmse, label= 'out sample')
     plt.title('RMSE vs. leaf size - BagLearner')
@@ -140,58 +141,75 @@ if __name__ == "__main__":
 
 
     #experiment_3_a compare length and MAE of DT and RT
-    dt_in_sample_mae = []
-    dt_out_sample_mae = []
-    rt_in_sample_mae = []
-    rt_out_sample_mae = []
+    # dt_in_sample_mae = []
+    # dt_out_sample_mae = []
+    # rt_in_sample_mae = []
+    # rt_out_sample_mae = []
     R_squared_dt_in_sample = []
     R_squared_dt_out_sample = []
     R_squared_rt_in_sample = []
     R_squared_rt_out_sample = []
+    train_time_dt = []
+    train_time_rt = []
 
 
     for i in leaf_range:
 
         learner_1 = dl.DTLearner(leaf_size=i, verbose=False)
+        start_time = time.time()
         learner_1.add_evidence(train_x, train_y)
+        end_time = time.time()
+        train_time_dt.append(end_time - start_time)
         pred_y_1 = learner_1.query(train_x)
-        mae_1 = np.mean(abs(pred_y_1 - train_y))
-        dt_in_sample_mae.append(mae_1)
+        # mae_1 = np.mean(abs(pred_y_1 - train_y))
+        # dt_in_sample_mae.append(mae_1)
         R_squared_1 = 1 - np.sum((pred_y_1 - train_y)**2)/np.sum((train_y - np.mean(train_y))**2)
         R_squared_dt_in_sample.append(R_squared_1)
 
         pred_y_2 = learner_1.query(test_x)
-        mae_2 = np.mean(abs(pred_y_2 - test_y))
-        dt_out_sample_mae.append(mae_2)
+        # mae_2 = np.mean(abs(pred_y_2 - test_y))
+        # dt_out_sample_mae.append(mae_2)
         R_squared_2 = 1 - np.sum((pred_y_2 - test_y) ** 2) / np.sum((test_y - np.mean(test_y)) ** 2)
         R_squared_dt_out_sample.append(R_squared_2)
 
         learner_2 = rl.RTLearner(leaf_size=i, verbose=False)
+        start_time = time.time()
         learner_2.add_evidence(train_x, train_y)
+        end_time = time.time()
+        train_time_rt.append(end_time - start_time)
         pred_y_3 = learner_2.query(train_x)
-        mae_3 = np.mean(abs(pred_y_3 - train_y))
-        rt_in_sample_mae.append(mae_3)
+        # mae_3 = np.mean(abs(pred_y_3 - train_y))
+        # rt_in_sample_mae.append(mae_3)
         R_squared_3 = 1 - np.sum((pred_y_3 - train_y) ** 2) / np.sum((train_y - np.mean(train_y)) ** 2)
         R_squared_rt_in_sample.append(R_squared_3)
 
         pred_y_4 = learner_2.query(test_x)
-        mae_4 = np.mean(abs(pred_y_4 - test_y))
-        rt_out_sample_mae.append(mae_4)
+        # mae_4 = np.mean(abs(pred_y_4 - test_y))
+        # rt_out_sample_mae.append(mae_4)
         R_squared_4 = 1 - np.sum((pred_y_4 - test_y) ** 2) / np.sum((test_y - np.mean(test_y)) ** 2)
         R_squared_rt_out_sample.append(R_squared_4)
 
-    plt.figure(3)
-    plt.plot(leaf_range, dt_in_sample_mae, label='DTLearner MAE in sample')
-    plt.plot(leaf_range, rt_in_sample_mae, label='RTLearner MAE in sample')
-    plt.plot(leaf_range, dt_out_sample_mae, label='DTLearner MAE out sample')
-    plt.plot(leaf_range, rt_out_sample_mae, label='RTLearner MAE out sample')
-    plt.title(' MAE vs. leaf size - DTLearner and RTLearner ')
+    # plt.figure(3)
+    # plt.plot(leaf_range, dt_in_sample_mae, label='DTLearner MAE in sample')
+    # plt.plot(leaf_range, rt_in_sample_mae, label='RTLearner MAE in sample')
+    # plt.plot(leaf_range, dt_out_sample_mae, label='DTLearner MAE out sample')
+    # plt.plot(leaf_range, rt_out_sample_mae, label='RTLearner MAE out sample')
+    # plt.title(' MAE vs. leaf size - DTLearner and RTLearner ')
+    # plt.xlabel('leaf size')
+    # plt.ylabel('MAE')
+    # plt.legend()
+    # plt.savefig('experiment_3_1')
+
+    plt.figure()
+    plt.plot(leaf_range, train_time_dt, label='DTLearner train time ')
+    plt.plot(leaf_range, train_time_rt, label='RTLearner train time ')
+    plt.title(' train time vs. leaf size - DTLearner and RTLearner ')
     plt.xlabel('leaf size')
-    plt.ylabel('MAE')
+    plt.ylabel('train time')
     plt.legend()
     plt.savefig('experiment_3_1')
 
-    plt.figure(4)
+    plt.figure()
     plt.plot(leaf_range, R_squared_dt_in_sample, label='DTLearner R-Squared in sample')
     plt.plot(leaf_range, R_squared_dt_out_sample, label='DTLearner R-Squared out sample')
     plt.plot(leaf_range, R_squared_rt_in_sample, label='RTLearner R-Squared in sample')
@@ -201,5 +219,17 @@ if __name__ == "__main__":
     plt.ylabel('R-Squared')
     plt.legend()
     plt.savefig('experiment_3_2')
+
+    # plt.figure(5)
+    # plt.plot(leaf_range, bl_in_sample_rmse, label= 'in sample')
+    # plt.plot(leaf_range, bl_out_sample_rmse, label= 'out sample')
+    # plt.title('RMSE vs. leaf size - BagLearner')
+    # plt.xlabel('leaf size')
+    # plt.ylabel('RMSE')
+    # plt.legend()
+    # plt.savefig('experiment_2')
+
+
+
 
 
