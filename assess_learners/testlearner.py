@@ -41,7 +41,7 @@ if __name__ == "__main__":
         print("Usage: python testlearner.py <filename>")
         sys.exit(1)
     inf = open(sys.argv[1])
-    data = np.genfromtxt(f, delimiter=',')
+    data = np.genfromtxt(inf, delimiter=',')
     data = data[1:, 1:]
     data.astype(float)
 
