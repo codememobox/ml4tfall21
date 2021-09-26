@@ -26,16 +26,15 @@ class BagLearner(object):
         """
 
         def bag_data(data_x, data_y):
-            data_select = np.random.choice(data_y.shape[0], data_y.shape[0], replace=True)
+            data_select = np.random.randint(0,data_y.shape[0], data_y.shape[0])
             return data_x[data_select], data_y[data_select]
 
 
         for learner in self.learners:
-            train_x, train_y = bag_data(data_x, data_y)
-            learner.add_evidence(train_x, train_y)
+            select_x, select_y = bag_data(data_x, data_y)
+            learner.add_evidence(select_x, select_y)
 
     def query(self, points):
-
         predict = np.zeros(points.shape[0])
         for learner in self.learners:
             predict= predict + learner.query(points)
