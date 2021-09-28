@@ -51,11 +51,11 @@ def best_4_lin_reg(seed=1489683273):
     # X with multiple columns  		  	   		   	 		  		  		    	 		 		   		 		  
     # y = x[:,0] + np.sin(x[:,1]) + x[:,2]**2 + x[:,3]**3
     x = np.random.random(size=(1000,2))
-    y = x[:,0] + x [:,1]
+    y = x[:,0] + x [:,1] # Linear Regression perform better for linear data(and input mutually independent)
     return x, y  		  	   		   	 		  		  		    	 		 		   		 		  
   		  	   		   	 		  		  		    	 		 		   		 		  
   		  	   		   	 		  		  		    	 		 		   		 		  
-def best_4_dt(seed=1489683273):  		  	   		   	 		  		  		    	 		 		   		 		  
+def best_4_dt(seed=1489683273):
     """  		  	   		   	 		  		  		    	 		 		   		 		  
     Returns data that performs significantly better with DTLearner than LinRegLearner.  		  	   		   	 		  		  		    	 		 		   		 		  
     The data set should include from 2 to 10 columns in X, and one column in Y.  		  	   		   	 		  		  		    	 		 		   		 		  
