@@ -44,13 +44,8 @@ def best_4_lin_reg(seed=1489683273):
     :return: Returns data that performs significantly better with LinRegLearner than DTLearner.  		  	   		   	 		  		  		    	 		 		   		 		  
     :rtype: numpy.ndarray  		  	   		   	 		  		  		    	 		 		   		 		  
     """  		  	   		   	 		  		  		    	 		 		   		 		  
-    np.random.seed(seed)  		  	   		   	 		  		  		    	 		 		   		 		  
-    # x = np.zeros((100, 2))
-    # y = np.random.random(size=(100,)) * 200 - 100
-    # Here's is an example of creating a Y from randomly generated  		  	   		   	 		  		  		    	 		 		   		 		  
-    # X with multiple columns  		  	   		   	 		  		  		    	 		 		   		 		  
-    # y = x[:,0] + np.sin(x[:,1]) + x[:,2]**2 + x[:,3]**3
-    x = np.random.normal(0,1,size=(1000, 2))
+    np.random.seed(seed)
+    x = np.random.random(size=(1000, 2))
     y = x[:,0] + x[:,1] # Linear Regression perform better for linear data(and input mutually independent)
     return x, y  		  	   		   	 		  		  		    	 		 		   		 		  
   		  	   		   	 		  		  		    	 		 		   		 		  
@@ -66,10 +61,8 @@ def best_4_dt(seed=1489683273):
     :return: Returns data that performs significantly better with DTLearner than LinRegLearner.  		  	   		   	 		  		  		    	 		 		   		 		  
     :rtype: numpy.ndarray  		  	   		   	 		  		  		    	 		 		   		 		  
     """  		  	   		   	 		  		  		    	 		 		   		 		  
-    np.random.seed(seed)  		  	   		   	 		  		  		    	 		 		   		 		  
-    # x = np.zeros((100, 2))
-    # y = np.random.random(size=(100,)) * 200 - 100
-    x = np.random.normal(0,1,size=(1000, 2))
+    np.random.seed(seed)
+    x = np.random.random(size=(1000, 2))
     y = np.zeros(1000)
     z = x[:,0] + x[:,1]
     for i in range(z.shape[0]):
