@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 pd.plotting.register_matplotlib_converters()
 import os
 import datetime as dt
-import marketsimcode as ms
+import market as ms
 
 from util import get_data
 
@@ -82,11 +82,11 @@ def testPolicy(symbol, sd, ed, sv):
         # print(actions)
         orders_df['Shares'] = np.abs(actions)
         # orders_df =orders_df.iloc[actions!=0,:]
-        orders_df = orders_df.iloc[:,1:]
+        # orders_df = orders_df.iloc[:,1:]
         orders_df.reset_index(inplace=True)
         orders_df.rename(columns={'index': 'Date'}, inplace=True)
         # orders_df.iloc[1:,1:] = orders_df.iloc[:,1:].shift(1)
-        # print(orders_df)
+        print(orders_df)
         # orders_df = orders_df.iloc[1:,:]
         # print(orders_df.iloc[:-1,:])
         return orders_df
@@ -97,7 +97,17 @@ def testPolicy(symbol, sd, ed, sv):
 
     return test_val
 
+def stats(port_val):
+    port_ret = port_val.copy()
+    port_ret = port_ret/port_ret.shift(-1)
+    port_ret = port_ret.iloc[:-1]
 
+    cum_ret = port_val.iloc[-1]/port_val.iloc[0] - 1
+    avg_ret = port_ret.mean()
+    std_ret = port_ret.std()
+    sharpe  = np.sqrt(252) * (avg_ret/std_ret)
+
+    return cum_ret, avg_ret, std_ret, sharpe
 
 
 if __name__ == "__main__":
@@ -111,8 +121,8 @@ if __name__ == "__main__":
     # print(bench)
 
     test = testPolicy(symbol=sym, sd = start_date, ed = end_date, sv = sv)
-    test = test/test.iloc[0]
-    # print(test)
+    # test = test/test.iloc[0]
+    print(test)
 
     # plt.figure(figsize=(10,5))
     # plt.plot(bench, c='g', label='Benchmark')
@@ -123,3 +133,5 @@ if __name__ == "__main__":
     # plt.legend()
     # plt.savefig('./fig/tos.png')
     # plt.show()
+
+    # print(stats(bench))
