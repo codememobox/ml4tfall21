@@ -6,7 +6,7 @@ import os
 import datetime as dt
 from util import get_data
 import indicators as inds
-import marketsim as ms
+import marketsimcode as ms
 
 class ManualStrategy(object):
     """

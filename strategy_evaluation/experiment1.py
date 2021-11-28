@@ -6,7 +6,7 @@ import util as ut
 import indicators as inds
 import matplotlib.pyplot as plt
 import indicators as indi
-import marketsim as ms
+import marketsimcode as ms
 import ManualStrategy
 import StrategyLearner
 
