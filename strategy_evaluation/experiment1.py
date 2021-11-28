@@ -67,6 +67,6 @@ def exp1_result(symbol='JPM', sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1
     plt.savefig('exp1.png')
 
 if __name__ == "__main__":
-    np.random.seed(1234)
+    np.random.seed(1234567)
 
     exp1_result()

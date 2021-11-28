@@ -29,7 +29,7 @@ class ManualStrategy(object):
         self.verbose = verbose
         self.impact = impact
         self.commission = commission
-        self.window = 21
+        self.window = 20
 
 
     def author(self):

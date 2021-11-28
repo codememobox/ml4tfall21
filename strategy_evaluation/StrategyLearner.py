@@ -62,7 +62,7 @@ class StrategyLearner(object):
         self.impact = impact  		  	   		   	 		  		  		    	 		 		   		 		  
         self.commission = commission
         self.learner = bl.BagLearner(learner=rl.RTLearner, kwargs={"leaf_size":5}, bags=25)
-        self.window = 21
+        self.window = 20
 
         self.YBUY = 0.012
         self.YSELL = -0.012
