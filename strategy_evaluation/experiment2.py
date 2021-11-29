@@ -34,6 +34,20 @@ def exp2_result(symbol='JPM', sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1
     sl4.add_evidence(symbol, sd, ed, sv)
     strategy_df_4 = sl4.testPolicy(symbol, sd, ed, sv)
 
+    print('trade frequency metrics impact 0')
+    frequency_1 = (strategy_df_1 != 0).sum().item()
+    print(frequency_1)
+    print('trade frequency metrics impact 0.002')
+    frequency_2 = (strategy_df_2 != 0).sum().item()
+    print(frequency_2)
+    print('trade frequency metrics impact 0.005')
+    frequency_3 = (strategy_df_3 != 0).sum().item()
+    print(frequency_3)
+    print('trade frequency metrics impact 0.007')
+    frequency_4 = (strategy_df_4 != 0).sum().item()
+    print(frequency_4)
+    print('\n\n\n')
+
 
 
 
@@ -56,25 +70,25 @@ def exp2_result(symbol='JPM', sd=dt.datetime(2008, 1, 1), ed=dt.datetime(2009, 1
     print(f"sharpe ratio with impact = 0 is {sharpe_ratio_1}\n\n")
 
     cumu_ret_2, std_ret_2, mean_ret_2, sharpe_ratio_2 = msms.port_stats(strategy_port_2)
-    print(f"stats results for strategy learner: symbol {symbol} from {sd} to {ed} with impact = 0.005 \n")
-    print(f"cumulated return with impact = 0.005  is {cumu_ret_2}")
-    print(f"daily return standard deviation with impact = 0.005  is {std_ret_2}")
-    print(f"daily return mean with impact = 0.005  is {mean_ret_2}")
-    print(f"sharpe ratio with impact = 0.005  is {sharpe_ratio_2}\n\n")
+    print(f"stats results for strategy learner: symbol {symbol} from {sd} to {ed} with impact = 0.002 \n")
+    print(f"cumulated return with impact = 0.002  is {cumu_ret_2}")
+    print(f"daily return standard deviation with impact = 0.002  is {std_ret_2}")
+    print(f"daily return mean with impact = 0.002  is {mean_ret_2}")
+    print(f"sharpe ratio with impact = 0.002  is {sharpe_ratio_2}\n\n")
 
     cumu_ret_3, std_ret_3, mean_ret_3, sharpe_ratio_3 = msms.port_stats(strategy_port_3)
-    print(f"stats results for strategy learner: symbol {symbol} from {sd} to {ed} with impact = 0.05 \n")
-    print(f"cumulated return with impact = 0.05 is {cumu_ret_3}")
-    print(f"daily return standard deviation with impact = 0.05 is {std_ret_3}")
-    print(f"daily return mean with impact = 0.05 is {mean_ret_3}")
-    print(f"sharpe ratio with impact = 0.05 is {sharpe_ratio_3}\n\n")
+    print(f"stats results for strategy learner: symbol {symbol} from {sd} to {ed} with impact = 0.005 \n")
+    print(f"cumulated return with impact = 0.005 is {cumu_ret_3}")
+    print(f"daily return standard deviation with impact = 0.005 is {std_ret_3}")
+    print(f"daily return mean with impact = 0.005 is {mean_ret_3}")
+    print(f"sharpe ratio with impact = 0.005 is {sharpe_ratio_3}\n\n")
 
     cumu_ret_4, std_ret_4, mean_ret_4, sharpe_ratio_4 = msms.port_stats(strategy_port_4)
-    print(f"stats results for strategy learner: symbol {symbol} from {sd} to {ed} with impact = 0.1 \n")
-    print(f"cumulated return with impact = 0.1 is {cumu_ret_4}")
-    print(f"daily return standard deviation with impact = 0.1 is {std_ret_4}")
-    print(f"daily return mean with impact = 0.1 is {mean_ret_4}")
-    print(f"sharpe ratio with impact = 0.1 is {sharpe_ratio_4}\n\n")
+    print(f"stats results for strategy learner: symbol {symbol} from {sd} to {ed} with impact = 0.007 \n")
+    print(f"cumulated return with impact = 0.007 is {cumu_ret_4}")
+    print(f"daily return standard deviation with impact = 0.007 is {std_ret_4}")
+    print(f"daily return mean with impact = 0.007 is {mean_ret_4}")
+    print(f"sharpe ratio with impact = 0.007 is {sharpe_ratio_4}\n\n")
 
     strategy_port_1 = strategy_port_1/strategy_port_1.iloc[0]
     strategy_port_2 = strategy_port_2/strategy_port_2.iloc[0]
